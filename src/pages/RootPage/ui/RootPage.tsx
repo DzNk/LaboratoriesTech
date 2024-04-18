@@ -3,6 +3,7 @@ import {Navbar} from "components/Navbar";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {HomePage} from "pages/HomePage";
 import {CalculatorPage} from "pages/CalculatorPage";
+import {StopWatchPage} from "pages/StopWatch";
 
 export function RootPage() {
     return (
@@ -14,6 +15,7 @@ export function RootPage() {
                         <Routes>
                             <Route index element={<HomePage/>}/>
                             <Route path="/lab1" element={<CalculatorPage/>}/>
+                            <Route path="/lab2" element={<StopWatchPage/>}/>
                         </Routes>
                     </AppShell.Main>
                 </AppShell>
