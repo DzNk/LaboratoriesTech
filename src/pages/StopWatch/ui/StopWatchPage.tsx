@@ -1,10 +1,11 @@
-import {Button, Center, Group, Space, Stack, Text} from "@mantine/core";
+import {Button, Center, Flex, Group, ScrollArea, Space, Stack, Text} from "@mantine/core";
 import {useEffect, useRef, useState} from "react";
 import styles from "pages/StopWatch/styles/StopWatch.module.scss"
 
 export function StopWatchPage() {
     const [isRunning, setIsRunning] = useState<boolean>(false);
     const [elapsedTime, setElapsedTime] = useState<number>(0);
+    const [runners, setRunners] = useState<number[]>([]);
 
     const intervalIdRef = useRef<number | undefined>(undefined);
     const startTimeRef = useRef<number>(0);
@@ -16,14 +17,16 @@ export function StopWatchPage() {
 
     const stop = () => {
         setIsRunning(false);
+        setRunners([...runners, elapsedTime]);
     }
 
     const reset = () => {
         setElapsedTime(0);
         setIsRunning(false);
+        setRunners([]);
     }
 
-    const formatTime = () => {
+    const formatTime = (elapsedTime: number) => {
         const minutes = Math.floor(elapsedTime / (1000 * 60) % 60);
         const seconds = Math.floor(elapsedTime / 1000 % 60);
         const milliseconds = Math.floor(elapsedTime % 1000 / 10);
@@ -34,6 +37,7 @@ export function StopWatchPage() {
 
         return `${minutesStr}:${secondsStr}:${millisecondsStr}`;
     }
+
 
     useEffect(() => {
         if (isRunning) {
@@ -54,14 +58,41 @@ export function StopWatchPage() {
         <>
             <Space h={'xl'}/>
             <Center>
-                <Stack>
-                    <Text className={styles.text}>{formatTime()}</Text>
-                    <Group grow>
-                        <Button className={styles.button} onClick={start}>Старт</Button>
-                        <Button className={styles.button} onClick={stop}>Стоп</Button>
-                        <Button className={styles.button} onClick={reset}>Сброс</Button>
-                    </Group>
-                </Stack>
+                <Group>
+                    <Stack>
+                        <Text className={styles.bigText}>{formatTime(elapsedTime)}</Text>
+                        <Group grow>
+                            <Button className={styles.button} onClick={start}>Старт</Button>
+                            <Button className={styles.button} onClick={stop}>Стоп</Button>
+                            <Button className={styles.button} onClick={reset}>Сброс</Button>
+                        </Group>
+                    </Stack>
+                    <Flex className={styles.runners}
+                          justify="center"
+                          align="flex-start"
+                          direction="column"
+                          wrap="nowrap">
+                        <Text className={styles.runnerHeader}>Список бегунов</Text>
+                        {
+                            runners.length > 0 &&
+                            <Text className={styles.runnerSub}>
+                                Общее
+                                время {formatTime(runners.reduce((total, currentRunner) => total + currentRunner, 0))}
+                            </Text>
+                        }
+                        <ScrollArea className={styles.border} h={400} w={'100%'}>
+                            {
+                                runners.map((runner, index) => {
+                                    return (
+                                        <Text key={index} className={styles.smallText}>
+                                            Бегун {index + 1}. - {formatTime(runner)}
+                                        </Text>
+                                    );
+                                })
+                            }
+                        </ScrollArea>
+                    </Flex>
+                </Group>
             </Center>
         </>
     );
