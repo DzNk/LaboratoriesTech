@@ -1,0 +1,1 @@
+export {SetsPage} from "pages/SetsPage/ui/SetsPage";

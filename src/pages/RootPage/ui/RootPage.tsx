@@ -5,6 +5,7 @@ import {HomePage} from "pages/HomePage";
 import {CalculatorPage} from "pages/CalculatorPage";
 import {StopWatchPage} from "pages/StopWatch";
 import {WordMakerPage} from "pages/WordMakerPage";
+import {SetsPage} from "pages/SetsPage";
 
 export function RootPage() {
     return (
@@ -18,6 +19,7 @@ export function RootPage() {
                             <Route path="/lab1" element={<CalculatorPage/>}/>
                             <Route path="/lab2" element={<StopWatchPage/>}/>
                             <Route path="/lab3" element={<WordMakerPage/>}/>
+                            <Route path="/lab4" element={<SetsPage/>}/>
                         </Routes>
                     </AppShell.Main>
                 </AppShell>
