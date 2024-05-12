@@ -46,8 +46,17 @@ export function useInputs(props: Properties) {
 
         if (upperValueStr.length === 0 || lowerValueStr.length === 0) return;
 
-        const floatUpperValue = parseFloat(upperValueStr);
-        const floatLowerValue = parseFloat(lowerValueStr);
+        let floatUpperValue;
+        let floatLowerValue;
+
+        if (isHex) {
+            floatUpperValue = parseFloat(convertHexToDecimal(upperValueStr));
+            floatLowerValue = parseFloat(convertHexToDecimal(lowerValueStr));
+        } else {
+            floatUpperValue = parseFloat(upperValueStr);
+            floatLowerValue = parseFloat(lowerValueStr);
+        }
+
         let resultValue = 0;
 
         switch (operation) {
@@ -65,8 +74,9 @@ export function useInputs(props: Properties) {
                 resultValue = floatUpperValue / floatLowerValue;
                 break;
         }
-
-        setResult(resultValue.toString());
+        let result = resultValue.toString();
+        if (isHex) result = convertDecimalToHex(result);
+        setResult(result);
     }
 
     const invertValue = () => {
@@ -91,35 +101,33 @@ export function useInputs(props: Properties) {
         }
     }, [focused1, focused2]);
 
+    const convertDecimalToHex = (decimalStr: string) => {
+        const sign = decimalStr.startsWith('-') ? '-' : '';
+        if (sign) decimalStr = decimalStr.substring(1);
+
+        const decimalNum = parseFloat(decimalStr);
+        return sign + decimalNum.toString(16);
+    };
+
+    const convertHexToDecimal = (hexStr: string) => {
+        const sign = hexStr.startsWith('-') ? '-' : '';
+        if (sign) hexStr = hexStr.substring(1);
+
+        const parts = hexStr.split(".");
+        const integerPart = parseInt(parts[0], 16);
+        let fractionalPart = 0;
+
+        if (parts.length > 1) {
+            for (let i = 0; i < parts[1].length; i++) {
+                fractionalPart += parseInt(parts[1][i], 16) / Math.pow(16, i + 1);
+            }
+        }
+
+        const decimalNum = sign + (integerPart + fractionalPart).toString();
+        return parseFloat(decimalNum).toString();
+    };
 
     useEffect(() => {
-        const convertDecimalToHex = (decimalStr: string) => {
-            const sign = decimalStr.startsWith('-') ? '-' : '';
-            if (sign) decimalStr = decimalStr.substring(1);
-
-            const decimalNum = parseFloat(decimalStr);
-            return sign + decimalNum.toString(16);
-        };
-
-        const convertHexToDecimal = (hexStr: string) => {
-            const sign = hexStr.startsWith('-') ? '-' : '';
-            if (sign) hexStr = hexStr.substring(1);
-
-            const parts = hexStr.split(".");
-            const integerPart = parseInt(parts[0], 16);
-            let fractionalPart = 0;
-
-            if (parts.length > 1) {
-                for (let i = 0; i < parts[1].length; i++) {
-                    fractionalPart += parseInt(parts[1][i], 16) / Math.pow(16, i + 1);
-                }
-            }
-
-            const decimalNum = sign + (integerPart + fractionalPart).toString();
-            return parseFloat(decimalNum).toString();
-        };
-
-
         if (isHex) {
             if (upperValue !== '') {
                 setUpperValue((prev) => convertDecimalToHex(prev.toString()));
