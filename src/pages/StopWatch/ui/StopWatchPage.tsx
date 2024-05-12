@@ -61,7 +61,7 @@ export function StopWatchPage() {
                 <Group w={"60em"}>
                     <Stack>
                         <Text className={styles.bigText}>{formatTime(elapsedTime)}</Text>
-                        <Group grow>
+                        <Group>
                             <Button className={styles.button} onClick={start}>Старт</Button>
                             <Button className={styles.button} onClick={stop}>Стоп</Button>
                             <Button className={styles.button} onClick={reset}>Сброс</Button>
