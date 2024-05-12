@@ -6,12 +6,13 @@ import {CalculatorPage} from "pages/CalculatorPage";
 import {StopWatchPage} from "pages/StopWatch";
 import {WordMakerPage} from "pages/WordMakerPage";
 import {SetsPage} from "pages/SetsPage";
+import {TwoListsPage} from "pages/TwoLists";
 
 export function RootPage() {
     return (
         <>
             <BrowserRouter>
-                <AppShell header={{height: 50}} withBorder={false}>
+                <AppShell header={{height: 70}} withBorder={false}>
                     <Navbar/>
                     <AppShell.Main>
                         <Routes>
@@ -20,6 +21,7 @@ export function RootPage() {
                             <Route path="/lab2" element={<StopWatchPage/>}/>
                             <Route path="/lab3" element={<WordMakerPage/>}/>
                             <Route path="/lab4" element={<SetsPage/>}/>
+                            <Route path="/lab5" element={<TwoListsPage/>}/>
                         </Routes>
                     </AppShell.Main>
                 </AppShell>

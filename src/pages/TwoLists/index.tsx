@@ -1,0 +1,1 @@
+export {TwoListsPage} from "pages/TwoLists/ui/TwoListsPage";
