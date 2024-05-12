@@ -60,7 +60,7 @@ export function StopWatchPage() {
             <Center>
                 <Group w={"60em"}>
                     <Stack>
-                        <Text className={styles.bigText}>{formatTime(elapsedTime)}</Text>
+                        <Text w={"5em"} className={styles.bigText}>{formatTime(elapsedTime)}</Text>
                         <Group>
                             <Button className={styles.button} onClick={start}>Старт</Button>
                             <Button className={styles.button} onClick={stop}>Стоп</Button>
@@ -80,7 +80,7 @@ export function StopWatchPage() {
                                 время {formatTime(runners.reduce((total, currentRunner) => total + currentRunner, 0))}
                             </Text>
                         }
-                        <ScrollArea className={styles.border} h={400} w={'100%'}>
+                        <ScrollArea className={styles.border} h={300} w={'100%'}>
                             {
                                 runners.map((runner, index) => {
                                     return (
