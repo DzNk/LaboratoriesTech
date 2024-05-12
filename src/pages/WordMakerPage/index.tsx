@@ -1,0 +1,1 @@
+export {WordMakerPage} from "pages/WordMakerPage/ui/WordMakerPage.tsx";

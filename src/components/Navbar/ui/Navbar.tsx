@@ -7,7 +7,7 @@ export function Navbar() {
         {title: "Главная", href: "/"},
         {title: "Калькулятор", href: "/lab1"},
         {title: "Секундомер", href: "/lab2"},
-        {title: "Лабораторная работа №3", href: "/lab3"},
+        {title: "Генератор фраз", href: "/lab3"},
         {title: "Лабораторная работа №4", href: "/lab4"},
         {title: "Лабораторная работа №5", href: "/lab5"},
         {title: "Лабораторная работа №6", href: "/lab6"},

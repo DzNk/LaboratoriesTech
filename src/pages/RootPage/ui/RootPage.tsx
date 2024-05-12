@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {HomePage} from "pages/HomePage";
 import {CalculatorPage} from "pages/CalculatorPage";
 import {StopWatchPage} from "pages/StopWatch";
+import {WordMakerPage} from "pages/WordMakerPage";
 
 export function RootPage() {
     return (
@@ -16,6 +17,7 @@ export function RootPage() {
                             <Route index element={<HomePage/>}/>
                             <Route path="/lab1" element={<CalculatorPage/>}/>
                             <Route path="/lab2" element={<StopWatchPage/>}/>
+                            <Route path="/lab3" element={<WordMakerPage/>}/>
                         </Routes>
                     </AppShell.Main>
                 </AppShell>
