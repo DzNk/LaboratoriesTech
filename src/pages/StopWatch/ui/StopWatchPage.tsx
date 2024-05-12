@@ -58,7 +58,7 @@ export function StopWatchPage() {
         <>
             <Space h={'xl'}/>
             <Center>
-                <Group>
+                <Group w={"60em"}>
                     <Stack>
                         <Text className={styles.bigText}>{formatTime(elapsedTime)}</Text>
                         <Group grow>
