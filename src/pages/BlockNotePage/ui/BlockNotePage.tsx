@@ -15,7 +15,8 @@ export function BlockNotePage() {
     const [weekDayNotes, setWeekDayNotes] = useState<WeekDayNote[]>(weekdays.map((day) => ({weekDay: day, notes: []})));
 
     const addNote = () => {
-        setNotes([...notes, currentNote]);
+        if (currentNote.trim() === "") return;
+        setNotes([...notes, `${notes.length + 1}): ${currentNote}`]);
         setCurrentNote("");
     }
 
@@ -57,8 +58,6 @@ export function BlockNotePage() {
         indexRef.current = weekdays.indexOf(weekDay);
         setNotes(weekDayNotes[indexRef.current].notes);
     }, [weekDay]);
-
-    console.log(weekDayNotes);
 
     return (
         <Center>
