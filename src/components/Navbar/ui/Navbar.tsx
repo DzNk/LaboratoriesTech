@@ -10,7 +10,7 @@ export function Navbar() {
         {title: "Генератор фраз", href: "/lab3"},
         {title: "Множества", href: "/lab4"},
         {title: "Два списка", href: "/lab5"},
-        {title: "Лабораторная работа №6", href: "/lab6"},
+        {title: "Блокнот", href: "/lab6"},
         {title: "Лабораторная работа №7", href: "/lab7"},
     ];
 

@@ -7,6 +7,7 @@ import {StopWatchPage} from "pages/StopWatch";
 import {WordMakerPage} from "pages/WordMakerPage";
 import {SetsPage} from "pages/SetsPage";
 import {TwoListsPage} from "pages/TwoLists";
+import {BlockNotePage} from "pages/BlockNotePage";
 
 export function RootPage() {
     return (
@@ -22,6 +23,7 @@ export function RootPage() {
                             <Route path="/lab3" element={<WordMakerPage/>}/>
                             <Route path="/lab4" element={<SetsPage/>}/>
                             <Route path="/lab5" element={<TwoListsPage/>}/>
+                            <Route path="/lab6" element={<BlockNotePage/>}/>
                         </Routes>
                     </AppShell.Main>
                 </AppShell>
