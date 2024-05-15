@@ -43,8 +43,9 @@ export function WordMakerPage() {
 
         const first = joinWords(firstWords);
         const second = joinWords(secondWords);
-
-        return `${first} ${verb} ${second}`;
+        let connector: string = "is";
+        if (firstWords.length > 1) connector = "are";
+        return `${first} ${connector} ${verb} ${second}`;
     };
 
     const handleAddWord = () => {
