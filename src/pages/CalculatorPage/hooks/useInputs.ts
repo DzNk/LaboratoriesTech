@@ -29,8 +29,32 @@ export function useInputs(props: Properties) {
             (currentInput === 'lower' && lowerValue.toString().includes('.')))) {
             return;
         }
-        if (currentInput === 'upper') setUpperValue((prev: string | number) => prev.toString() + value);
-        else setLowerValue((prev: string | number) => prev.toString() + value);
+
+        if (currentInput === 'upper') {
+            setUpperValue((prev: string | number) => {
+                let newValue = prev.toString() + value;
+
+                newValue = newValue.replace(/^0+(?=\d)/, '');
+
+                if (newValue.startsWith('.')) {
+                    newValue = '0' + newValue;
+                }
+
+                return newValue;
+            });
+        } else {
+            setLowerValue((prev: string | number) => {
+                let newValue = prev.toString() + value;
+
+                newValue = newValue.replace(/^0+(?=\d)/, '');
+
+                if (newValue.startsWith('.')) {
+                    newValue = '0' + newValue;
+                }
+
+                return newValue;
+            });
+        }
     };
 
     const clearInput = () => {
@@ -57,21 +81,21 @@ export function useInputs(props: Properties) {
             floatLowerValue = parseFloat(lowerValueStr);
         }
 
-        let resultValue = 0;
+        let resultValue = '';
 
         switch (operation) {
             case Operation.ADD:
-                resultValue = floatUpperValue + floatLowerValue;
+                resultValue = (floatUpperValue + floatLowerValue).toString();
                 break;
             case Operation.SUB:
-                resultValue = floatUpperValue - floatLowerValue;
+                resultValue = (floatUpperValue - floatLowerValue).toString();
                 break;
             case Operation.MUL:
-                resultValue = floatUpperValue * floatLowerValue;
+                resultValue = (floatUpperValue * floatLowerValue).toString();
                 break;
             case Operation.DIV:
                 if (floatLowerValue == 0) break;
-                resultValue = floatUpperValue / floatLowerValue;
+                resultValue = (floatUpperValue / floatLowerValue).toString();
                 break;
         }
         let result = resultValue.toString();

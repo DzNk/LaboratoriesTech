@@ -16,7 +16,6 @@ export function StopWatchPage() {
     }
 
     const stop = () => {
-        setIsRunning(false);
         setRunners([...runners, elapsedTime]);
     }
 
