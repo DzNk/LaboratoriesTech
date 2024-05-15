@@ -11,7 +11,7 @@ export function Navbar() {
         {title: "Множества", href: "/lab4"},
         {title: "Два списка", href: "/lab5"},
         {title: "Блокнот", href: "/lab6"},
-        {title: "Лабораторная работа №7", href: "/lab7"},
+        {title: "Телефонная книга", href: "/lab7"},
     ];
 
     return (
